@@ -5,5 +5,13 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ../:/var/www/html
+      - ../public:/var/www/html
+    links:
+            - web:web
     container_name: nginx
+
+  web:
+    build: ./phpfpm
+    volumes:
+      - ../public:/var/www/html
+    container_name: web
